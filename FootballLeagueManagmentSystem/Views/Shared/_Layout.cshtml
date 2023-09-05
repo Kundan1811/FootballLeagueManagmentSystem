@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/Content/StyleSheet.css">
+    <title>@ViewBag.Title - eFootballLeague</title>
+    
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        .custom-btn {
+            /* background-color: #10ad3a;*/ /* Your desired background color */
+            color: #10ad3a; /* Text color */
+            border: none; /* Remove border */
+            padding: 10px 20px; /* Adjust padding as needed */
+            transition: background-color 0.3s ease;
+            /* Add any other custom styles you want */
+        }
+            .custom-btn:hover {
+                background-color: #10ad3a; /* Change the background color on hover */
+                /* Add any other hover styles you want */
+            }
+
+                </style>
+</head>
+<body>
+    <style>
+        body {
+            /*background-image:url('../Content/Images/Football.jpg');*/
+            background-color: black;
+                     
+            color: #10ad3a
+        }
+    </style>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
+            <img src="~/Content/Images/logo.png" style="width:90px" />
+            @Html.ActionLink("eFootballLeague", "Index", "Home", new { area = "" }, new { @class = "navbar-brand fs-3" })
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1 justify-content-center">
+
+                        <li>@Html.ActionLink("Teams", "List", "Teams", new { area = "" }, new { @class = "nav-link fs-4" })</li>
+                        <li>@Html.ActionLink("Matches", "MatchesIndex", "Matches", new { area = "" }, new { @class = "nav-link fs-4" })</li>
+                        <li>@Html.ActionLink("LeagueTable", "Index", "LeagueTable", new { area = "" }, new { @class = "nav-link fs-4" })</li>
+                        <li>@Html.ActionLink("ContactUs", "Contact", "Home", new { area = "" }, new { @class = "nav-link fs-4" })</li>
+                        @*<li>@Html.ActionLink("Logout", "Logout", "Account") </li>*@
+                    
+                    
+
+                </ul>
+            </div>
+            
+        </div>
+        <div class="collapse navbar-collapse justify-content-end" id="navigation">
+           
+            <ul class="navbar-nav">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item active">
+                        <strong> <a class="nav-link">Hello-@User.Identity.Name</a> </strong>
+                    </li>
+                    <li class="nav-item active">
+                        <strong> @Html.ActionLink("Logout", "Logout", "Account", new { area = "" }, new { @class = "nav-link" })</strong>
+                    </li>
+                }
+                else
+                {
+                    <li class="custom-btn" style="font-size: larger">
+                        <strong>@Html.ActionLink("Login", "Login", "Account", new { area = "" }, new { @class = "nav-link" })</strong>
+                    </li>
+                }
+
+            </ul>
+        </div>
+    </nav>  
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - eFootball league </p>
+        </footer>
+    </div>
+ 
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

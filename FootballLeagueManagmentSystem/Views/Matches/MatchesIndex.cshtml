@@ -1,0 +1,75 @@
+﻿@model IEnumerable<FootballLeagueManagmentSystem.Models.Matches>
+
+@{
+    ViewBag.Title = "MatchesIndex";
+}
+
+<h2>MatchesIndex</h2>
+<style>
+
+</style>
+
+<table class="table" style="color: #10ad3a">
+    <tr align="center">
+
+        <th>
+            @Html.DisplayNameFor(model => model.MatchId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HomeTeamName)
+        </th>
+        <th>
+            vs
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AwayTeamName)
+        </th>
+        <th>
+            |
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HomeTeamScore)
+        </th>
+        <th>
+            -
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AwayTeamScore)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr align="center">
+        <td>
+            @Html.DisplayFor(modelItem => item.MatchId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HomeTeamName)
+        </td>
+        <td>
+            vs
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AwayTeamName)
+        </td>
+        <td>
+            |
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HomeTeamScore)
+        </td>
+        <td>
+            -
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AwayTeamScore)
+        </td>
+        <td>
+            @Html.ActionLink("AddMatchResult", "AddMatchResult", "Matches", new { matchId = item.MatchId, homeTeamScore = item.HomeTeamScore, awayTeamScore = item.AwayTeamScore }, null)
+            @*@Html.ActionLink("AddMatchResult","AddMatchResult", "Matches", new { /* id=item.PrimaryKey */, homeTeamScore = item.HomeTeamScore, awayTeamScore = item.AwayTeamScore} );*@
+        </td>
+    </tr>
+}
+
+</table>

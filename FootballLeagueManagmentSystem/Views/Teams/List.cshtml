@@ -1,0 +1,44 @@
+﻿@model IEnumerable<FootballLeagueManagmentSystem.Models.Teams>
+
+@{
+    ViewBag.Title = "Players List";
+}
+
+<h2>List</h2>
+
+<p>
+    @Html.ActionLink("Add Player", "Create")
+</p>
+<table class="table" style="color: #10ad3a">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.TeamName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlayerName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.TeamName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlayerName)
+            </td>
+            <td>
+                
+                @Html.ActionLink("Edit", "Edit", new { id = item.TeamId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.TeamId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.TeamId }, new { onclick = "return confirm('Are you sure to delete this record?');" })
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.ActionLink("Generate Fixture", "GenerateFixtures", "Matches")
